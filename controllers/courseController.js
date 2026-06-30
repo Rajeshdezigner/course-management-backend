@@ -1,16 +1,9 @@
-// controllers/courseController.js
-// Course CRUD — Admin & Instructor (with ownership checks)
-
 const Course = require("../models/Course");
 const { successResponse, errorResponse } = require("../utils/apiResponse");
-
-// ─── @desc    Get all courses
-// ─── @route   GET /api/courses
-// ─── @access  Public (all roles)
+ 
 const getAllCourses = async (req, res) => {
   try {
-    // Populate createdBy to show instructor name and email
-    const courses = await Course.find()
+     const courses = await Course.find()
       .populate("createdBy", "name email role")
       .sort({ createdAt: -1 });
 
@@ -21,9 +14,6 @@ const getAllCourses = async (req, res) => {
   }
 };
 
-// ─── @desc    Get single course by ID
-// ─── @route   GET /api/courses/:id
-// ─── @access  Public (all roles)
 const getCourseById = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id).populate(
@@ -47,9 +37,6 @@ const getCourseById = async (req, res) => {
   }
 };
 
-// ─── @desc    Create a new course
-// ─── @route   POST /api/courses
-// ─── @access  Private/Admin, Instructor
 const createCourse = async (req, res) => {
   try {
     const { title, description, category, price } = req.body;
@@ -151,9 +138,6 @@ const updateCourse = async (req, res) => {
   }
 };
 
-// ─── @desc    Delete a course
-// ─── @route   DELETE /api/courses/:id
-// ─── @access  Private/Admin, Instructor (own courses only)
 const deleteCourse = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
