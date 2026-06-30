@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment variables (NEVER commit this)
+.env
+
+# Upload files (optional — remove these lines if you want to track them)
+uploads/images/*
+uploads/documents/*
+!uploads/images/.gitkeep
+!uploads/documents/.gitkeep
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
